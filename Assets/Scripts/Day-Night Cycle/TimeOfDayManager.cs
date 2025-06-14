@@ -6,9 +6,12 @@ public class TimeOfDayManager : MonoBehaviour
     [SerializeField] LightingPreset preset;
     [SerializeField] Light directionalLight;
     [SerializeField] float timeMultiplier = .2f;
+    public bool isPaused;
 
     private void Update()
     {
+        if (isPaused) return;
+
         TimeOfDay += Time.deltaTime * timeMultiplier;
         TimeOfDay %= 24; // Clamp between 0-24
     }
