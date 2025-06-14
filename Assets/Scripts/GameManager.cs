@@ -13,10 +13,9 @@ public class GameManager : MonoBehaviour
     {
         if (!context.performed)
             return;
-        Debug.Log("open");
 
         inventory.SetActive(true);
-        timeOfDayManager.isPaused = true;
+        timeOfDayManager.Pause("INVENTORY");
         playerInputHandler.SwapActionMap("UI");
 
         StartCoroutine(FrameWait());
@@ -29,15 +28,12 @@ public class GameManager : MonoBehaviour
 
     public void OnInventoryClose(InputAction.CallbackContext context)
     {
-        if (!context.started)
-            return;
-        if (!_isInventoryOpen)
+        if (!context.started || !_isInventoryOpen)
             return;
 
-        Debug.Log("close");
         _isInventoryOpen = false;
         inventory.SetActive(false);
-        timeOfDayManager.isPaused = false;
+        timeOfDayManager.Unpause("INVENTORY");
         playerInputHandler.SwapActionMap("Player");
     }
 }

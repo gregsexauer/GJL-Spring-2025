@@ -49,10 +49,6 @@ public class PlayerInputHandler : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 break;
-            case "Inventory":
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-                break;
             case "UI":
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;

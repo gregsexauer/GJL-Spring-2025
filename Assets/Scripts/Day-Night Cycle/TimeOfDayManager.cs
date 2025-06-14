@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeOfDayManager : MonoBehaviour
@@ -6,11 +7,12 @@ public class TimeOfDayManager : MonoBehaviour
     [SerializeField] LightingPreset preset;
     [SerializeField] Light directionalLight;
     [SerializeField] float timeMultiplier = .2f;
-    public bool isPaused;
+    bool _isPaused;
+    List<string> _reasonsForPausing = new();
 
     private void Update()
     {
-        if (isPaused) return;
+        if (_isPaused) return;
 
         TimeOfDay += Time.deltaTime * timeMultiplier;
         TimeOfDay %= 24; // Clamp between 0-24
@@ -38,5 +40,18 @@ public class TimeOfDayManager : MonoBehaviour
             time -= 12;
         string t = System.TimeSpan.FromHours((double)time).ToString(@"\.hh\:mm").Replace(".", "") + " " + ampm;
         return t;
+    }
+
+    public void Pause(string reasonForPausing)
+    {
+        _isPaused = true;
+        _reasonsForPausing.Add(reasonForPausing);
+    }
+
+    public void Unpause(string reasonForPausing)
+    {
+        _reasonsForPausing.Remove(reasonForPausing);
+        if (_reasonsForPausing.Count == 0)
+            _isPaused = false;
     }
 }
