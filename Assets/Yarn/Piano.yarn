@@ -1,0 +1,27 @@
+﻿title: Piano
+---
+<<if Is_Piano_Fixed()>>
+    <<jump Already_Fixed>>
+<<endif>>
+
+It looks like the rope is frayed... seems dangerous
+<<if Does_Inventory_Contain_Item("Rope")>>
+    <<jump Fix_Piano>>
+<<endif>>
+===
+
+title: Fix_Piano
+---
+Should I replace the rope?
+    -> Yes
+        <<Replace_Rope Piano>>
+        <<Remove_Item Rope>>
+        It looks much safer now!
+    -> No
+        It would be a shame if someone was walking under this when the rope snapped...
+===
+
+title: Already_Fixed
+---
+It looks much safer now!
+===
