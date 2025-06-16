@@ -1,4 +1,5 @@
 using UnityEngine;
+using Yarn.Unity;
 
 public class Item : MonoBehaviour, IInteractable
 {
@@ -11,5 +12,12 @@ public class Item : MonoBehaviour, IInteractable
         IsActive = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         inventory.PickUpItem(this);
+    }
+
+    [YarnCommand("Reveal")]
+    public void Reveal()
+    {
+        GetComponent<Collider>().enabled = true;
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
     }
 }
