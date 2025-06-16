@@ -1,6 +1,29 @@
 ﻿title: Saddest_Kid_Intro
 ---
-The Saddest Kid In The World: I am... so very sad...
-    -> What's Wrong?
-    -> That sucks
+Geez, it's really raining down on this kid...
+<<if Does_Inventory_Contain_Item("Umbrella")>>
+    <<jump Offer_Umbrella>>
+<<endif>>
+===
+
+title: Offer_Umbrella
+---
+Should I offer my umbrella?
+    -> Yes
+        <<Give_Umbrella "The Saddest Kid In The World">>
+        <<Remove_Item Umbrella>>
+        <<jump Umbrella_Given>>
+    -> No
+        Sucks to be this kid, I guess
+===
+
+title: Umbrella_Given
+---
+The Saddest Kid In The World: Thank you, kind stranger
+What's wrong?
+The Saddest Kid In The World: I got a bad grade on my test...
+    -> That's OK! I got bad grades too, and look at me! I'm stuck in a time loop!
+        The Saddest Kid In The World: What? You're weird. Leave me alone.
+    -> That's OK! I got bad grades too, and look at me! I'm just a regular person!
+        The Saddest Kid In The World: I guess that's true...
 ===
