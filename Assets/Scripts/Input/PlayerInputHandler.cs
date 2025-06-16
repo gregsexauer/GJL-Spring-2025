@@ -10,6 +10,11 @@ public class PlayerInputHandler : MonoBehaviour
     [field: SerializeField] public bool SprintInput { get; private set; }
     [field: SerializeField] public bool InteractInput { get; private set; }
 
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveInput = context.ReadValue<Vector2>();
