@@ -7,6 +7,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject credits;
     GameObject _activeSubMenu;
 
+    void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     public void OnPlay()
     {
         SceneManager.LoadScene("Overworld");
