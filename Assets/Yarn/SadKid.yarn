@@ -24,6 +24,7 @@ What's wrong?
 The Saddest Kid In The World: I got a bad grade on my test...
     -> That's OK! I got bad grades too, and look at me! I'm stuck in a time loop!
         The Saddest Kid In The World: What? You're weird. Leave me alone.
+        <<Fail_Loop "Game Manager" "Said Something Weird">>
     -> That's OK! I got bad grades too, and look at me! I'm just a regular person!
         The Saddest Kid In The World: I guess that's true...
 ===
