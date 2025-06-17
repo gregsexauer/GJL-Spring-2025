@@ -52,15 +52,15 @@ public class GameManager : MonoBehaviour
         switch (reason)
         {
             case "Piano":
-                loopFailText.text = "A falling piano has crushed Accidents Man!";
+                loopFailText.text = "A falling piano has crushed Death Wish Dave!";
                 break;
 
             case "Electrocution":
-                loopFailText.text = "Accidents Man has been electrocuted by a fallen power wire!";
+                loopFailText.text = "Death Wish Dave has been electrocuted by a fallen power wire!";
                 break;
 
             case "Dynamite":
-                loopFailText.text = "Accidents Man thought he was smoking a cigar, but it was actually a stick of dynamite!";
+                loopFailText.text = "Death Wish Dave thought he was smoking a cigar, but it was actually a stick of dynamite!";
                 break;
 
             case "Said Something Weird":

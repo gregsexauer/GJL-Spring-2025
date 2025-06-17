@@ -7,12 +7,12 @@ public class TimeOfDayManager : MonoBehaviour
     [SerializeField] LightingPreset preset;
     [SerializeField] Light directionalLight;
     [SerializeField] float timeMultiplier = .2f;
-    bool _isPaused;
+    public bool IsPaused { get; private set; }
     List<string> _reasonsForPausing = new();
 
     private void Update()
     {
-        if (_isPaused) return;
+        if (IsPaused) return;
 
         TimeOfDay += Time.deltaTime * timeMultiplier;
         TimeOfDay %= 24; // Clamp between 0-24
@@ -44,7 +44,7 @@ public class TimeOfDayManager : MonoBehaviour
 
     public void Pause(string reasonForPausing)
     {
-        _isPaused = true;
+        IsPaused = true;
         _reasonsForPausing.Add(reasonForPausing);
     }
 
@@ -52,6 +52,6 @@ public class TimeOfDayManager : MonoBehaviour
     {
         _reasonsForPausing.Remove(reasonForPausing);
         if (_reasonsForPausing.Count == 0)
-            _isPaused = false;
+            IsPaused = false;
     }
 }

@@ -19,4 +19,12 @@ public class Piano : MonoBehaviour
     {
         return _isFixed;
     }
+
+    public void Drop()
+    {
+        if (_isFixed)
+            return;
+
+        GetComponent<Rigidbody>().useGravity = true;
+    }
 }
