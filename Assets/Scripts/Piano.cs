@@ -7,6 +7,11 @@ public class Piano : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     static bool _isFixed = false;
 
+    private void Start()
+    {
+        _isFixed = false;
+    }
+
     [YarnCommand("Replace_Rope")]
     public void FixPiano()
     {
@@ -18,5 +23,13 @@ public class Piano : MonoBehaviour
     public static bool IsPianoFixed()
     {
         return _isFixed;
+    }
+
+    public void Drop()
+    {
+        if (_isFixed)
+            return;
+
+        GetComponent<Rigidbody>().useGravity = true;
     }
 }
