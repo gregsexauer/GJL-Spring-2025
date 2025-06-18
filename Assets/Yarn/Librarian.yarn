@@ -1,0 +1,20 @@
+﻿title: Librarian
+---
+<<if Has_Given_Library_Card()>>
+    <<jump Has_Given_Library_Card>>
+<<endif>>
+
+Librarian: Shh... this is a library. I formally request you modulate your vocal inflections accordingly.
+Librarian: What business have you here, stranger? Might I interest you in an Exceptionally Expensive Book, or perhaps a Library Card?
+    -> I'll take the Exceptionally Expensive Book, thank you, fine Librarian
+        Librarian: You lack the requisite funds to afford the Exceptionally Expensive Book! Waste not my time, stranger. I have many tomes which need my immediate attention...
+    -> I'll take the Library Card, thank you, fine Librarian
+        Librarian: None ever desire the Exceptionally Expensive Book... Very well. You will encounter the Library Card within the vicinity of the portal to the outer realms. 
+        <<Reveal "Library Card">>
+        <<Give_Library_Card "Librarian">>
+===
+
+title: Has_Given_Library_Card
+---
+Librarian: Correct me if I err, but I maintain that your circumstances for occupying these grounds have ceased...
+===
