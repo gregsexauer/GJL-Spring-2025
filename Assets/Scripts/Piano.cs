@@ -7,6 +7,11 @@ public class Piano : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     static bool _isFixed = false;
 
+    private void Start()
+    {
+        _isFixed = false;
+    }
+
     [YarnCommand("Replace_Rope")]
     public void FixPiano()
     {
