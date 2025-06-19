@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField] PlayerInput playerInput;
+
     [Header("Player Input Values")]
     [field: SerializeField] public Vector2 MoveInput { get; private set; }
     [field: SerializeField] public Vector2 LookInput { get; private set; }
@@ -10,9 +13,16 @@ public class PlayerInputHandler : MonoBehaviour
     [field: SerializeField] public bool SprintInput { get; private set; }
     [field: SerializeField] public bool InteractInput { get; private set; }
 
-    private void Awake()
+    private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        StartCoroutine(WaitThenDisableActions());
+        IEnumerator WaitThenDisableActions()
+        {
+            yield return null;
+            foreach (var map in playerInput.actions.actionMaps)
+                map.Disable();
+            SwapActionMap("UI");
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -60,6 +70,6 @@ public class PlayerInputHandler : MonoBehaviour
                 break;
         }
 
-        GetComponent<PlayerInput>().SwitchCurrentActionMap(newMap);
+        playerInput.SwitchCurrentActionMap(newMap);
     }
 }
