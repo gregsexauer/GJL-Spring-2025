@@ -1,0 +1,14 @@
+﻿title: Dynamite
+---
+I'll be honest, I have no idea why this is laying out in the middle of a city.
+Maybe I should swap it out for something else...
+<<if Does_Inventory_Contain_Item("Cigar")>>
+    Maybe this cigar would be a good replacement?
+        -> Yes
+            <<Swap Dynamite>>
+            Yeah, that's better... I think...
+            Long-term health consequences be damned...
+        -> No
+            It's really none of my business, I guess...
+<<endif>>
+===
