@@ -5115,7 +5115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86606d67b5ba74489539e60e3060d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 4.5
+  rotationSpeed: 5.5
   cameraTarget: {fileID: 1079559758}
   topClamp: 90
   bottomClamp: -90
@@ -28035,6 +28035,7 @@ MonoBehaviour:
   gameWinCanvasGroup: {fileID: 1885152622}
   loopStartSFX: {fileID: 8300000, guid: 41337f516b282ff4683960d5b52d96e8, type: 3}
   loopFailSFX: {fileID: 8300000, guid: 52e16dfbff85a3f44bf059de788e07a6, type: 3}
+  gameplayHud: {fileID: 1301610365}
 --- !u!4 &1764502338
 Transform:
   m_ObjectHideFlags: 0
@@ -37388,6 +37389,7 @@ MonoBehaviour:
   preset: {fileID: 11400000, guid: 1f2a9463dcfe4c54485ae1807f60aa76, type: 2}
   directionalLight: {fileID: 410087040}
   timeMultiplier: 0.08
+  manager: {fileID: 1764502337}
 --- !u!4 &2071980498
 Transform:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] CanvasGroup gameWinCanvasGroup;
     [SerializeField] AudioClip loopStartSFX;
     [SerializeField] AudioClip loopFailSFX;
+    [SerializeField] GameObject gameplayHud;
     bool _gameOver = false;
     int _completedQuests = 0;
     bool _isInventoryOpen = false;
@@ -95,6 +96,10 @@ public class GameManager : MonoBehaviour
             case "No Wallet":
                 loopFailText.text = "You didn't get the wallet!";
                 break;
+
+            case "Day End":
+                loopFailText.text = "You didn't complete the tasks before the end of the day!";
+                break;
         }
 
         StartCoroutine(LoopFail());
@@ -104,6 +109,8 @@ public class GameManager : MonoBehaviour
     {
         while (dialogueRunner.IsDialogueRunning)
             yield return null;
+
+        gameplayHud.SetActive(false);
 
         yield return new WaitForSeconds(1);
 
@@ -152,6 +159,10 @@ public class GameManager : MonoBehaviour
     {
         while (dialogueRunner.IsDialogueRunning)
             yield return null;
+
+        gameplayHud.SetActive(false);
+
+        timeOfDayManager.Pause("WIN");
 
         yield return new WaitForSeconds(1);
 

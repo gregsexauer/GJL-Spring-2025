@@ -55,6 +55,13 @@ public class VendingMachineControls : MonoBehaviour
         {
             GetComponent<AudioSource>().Play();
             wallet.DOMove(walletEndPosition.position, .5f).SetEase(Ease.Linear).OnComplete(() => RevealWallet());
+            StartCoroutine(ResetText());
+            IEnumerator ResetText()
+            {
+                yield return new WaitForSeconds(1.5f);
+                _currentInput = "";
+                text.text = "";
+            }
         }
         else
         {

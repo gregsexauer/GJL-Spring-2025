@@ -7,6 +7,7 @@ public class TimeOfDayManager : MonoBehaviour
     [SerializeField] LightingPreset preset;
     [SerializeField] Light directionalLight;
     [SerializeField] float timeMultiplier = .2f;
+    [SerializeField] GameManager manager;
     public bool IsPaused { get; private set; }
     List<string> _reasonsForPausing = new();
 
@@ -15,6 +16,8 @@ public class TimeOfDayManager : MonoBehaviour
         if (IsPaused) return;
 
         TimeOfDay += Time.deltaTime * timeMultiplier;
+        if (TimeOfDay >= 24)
+            manager.FailLoop("Day End");
         TimeOfDay %= 24; // Clamp between 0-24
     }
 

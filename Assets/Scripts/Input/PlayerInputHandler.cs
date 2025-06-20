@@ -22,8 +22,6 @@ public class PlayerInputHandler : MonoBehaviour
             foreach (var map in playerInput.actions.actionMaps)
                 map.Disable();
             SwapActionMap("UI");
-            yield return null;
-            SwapActionMap("UI");
         }
     }
 
