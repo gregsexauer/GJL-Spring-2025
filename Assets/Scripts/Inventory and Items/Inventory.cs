@@ -8,10 +8,15 @@ public class Inventory : MonoBehaviour
     static List<Item> _items = new();
     static List<InventoryItem> _inventoryItems = new();
 
-    private void Start()
+    private void Awake()
     {
         foreach (Item item in _items)
-            RemoveItem(item.name);
+        {
+            if (item != null)
+                RemoveItem(item.name);
+        }
+        _items.Clear();
+        _inventoryItems.Clear();
     }
 
     public void PickUpItem(Item item)
@@ -59,8 +64,9 @@ public class Inventory : MonoBehaviour
     public static bool DoesInventoryContainItem(string itemName)
     {
         bool itemFound = false;
+
         foreach (Item item in _items)
-            if (item.gameObject.name == itemName)
+            if (item != null && item.gameObject.name == itemName)
                 itemFound = true;
 
         return itemFound;

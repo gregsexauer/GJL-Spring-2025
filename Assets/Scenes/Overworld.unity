@@ -9019,7 +9019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &512990711
 Transform:
   m_ObjectHideFlags: 0
@@ -11574,6 +11574,7 @@ GameObject:
   - component: {fileID: 707455207}
   - component: {fileID: 707455209}
   - component: {fileID: 707455208}
+  - component: {fileID: 707455210}
   m_Layer: 0
   m_Name: Walter
   m_TagString: Untagged
@@ -11633,6 +11634,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0024643, y: 2.838826, z: 0.65455246}
   m_Center: {x: 0.0012321472, y: 0.919413, z: -0.013523102}
+--- !u!114 &707455210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707455206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea1810a3356aad41b12b8f44e21722b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1764502337}
+  spriteRenderer: {fileID: 1754654772}
+  happySprite: {fileID: 21300000, guid: dc01b80b130c7e842a8397a4dbc0ce1c, type: 3}
 --- !u!1 &713886280
 GameObject:
   m_ObjectHideFlags: 0
@@ -26819,6 +26835,9 @@ MonoBehaviour:
   loopFailText: {fileID: 1705510882}
   failCanvasGroup: {fileID: 1490440483}
   dialogueRunner: {fileID: 164618636}
+  daveQuestText: {fileID: 297629088}
+  walterQuestText: {fileID: 269374825}
+  kidQuestText: {fileID: 1232638066}
 --- !u!4 &1764502338
 Transform:
   m_ObjectHideFlags: 0
@@ -27319,7 +27338,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5dc8d284fe8fda446ac0d37f0ece04ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -35681,7 +35700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5955992680d824a89b7fb22115a14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TimeOfDay>k__BackingField: 6
+  <TimeOfDay>k__BackingField: 8
   preset: {fileID: 11400000, guid: 1f2a9463dcfe4c54485ae1807f60aa76, type: 2}
   directionalLight: {fileID: 410087040}
   timeMultiplier: 0.08
