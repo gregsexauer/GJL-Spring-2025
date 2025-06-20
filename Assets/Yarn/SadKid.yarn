@@ -1,5 +1,9 @@
-﻿title: Saddest_Kid_Intro
+title: Saddest_Kid_Intro
 ---
+<<if Does_Inventory_Contain_Item("Library Card")>>
+    <<jump Offer_Library_Card>>
+<<endif>>
+
 Geez, it's really raining down on this kid...
 <<if Does_Inventory_Contain_Item("Umbrella")>>
     <<jump Offer_Umbrella>>
@@ -19,7 +23,7 @@ Should I offer my Umbrella?
 
 title: Umbrella_Given
 ---
-The Saddest Kid In The World: Thank you, kind stranger
+The Saddest Kid In The World: Thank you, kind stranger...
 What's wrong?
 The Saddest Kid In The World: I got a bad grade on my test...
     -> That's OK! I got bad grades too, and look at me! I'm stuck in a time loop!
@@ -27,4 +31,22 @@ The Saddest Kid In The World: I got a bad grade on my test...
         <<Fail_Loop "Game Manager" "Said Something Weird">>
     -> That's OK! I got bad grades too, and look at me! I'm just a regular person!
         The Saddest Kid In The World: I guess that's true...
+        The Saddest Kid In The World: The problem is, I can't understand what the Librarian is saying, and she scares me...
+        The Saddest Kid In The World: And I can't get a Library Card without talking to the Librarian first...
+        The Saddest Kid In The World: If I had a Library Card, I could borrow a book to study for my test...
+        <<Open_Door "Library Door">>
+        Don't worry kid, I'll get you that Library Card!
+        The Saddest Kid In The World: I'm gonna worry anyways... my test is tomorrow...
+===
+
+title: Offer_Library_Card
+---
+Should I give the kid the Library Card?
+ -> Yes
+    Here's your very own Library Card!
+    <<Remove_Item "Library Card">>
+    <<Finish_Quest_Kid "The Saddest Kid In The World">>
+    The Saddest Kid In the World: Wow! Thanks stranger!
+-> No
+    I guess he needs to learn to overcome his fears by himself?
 ===

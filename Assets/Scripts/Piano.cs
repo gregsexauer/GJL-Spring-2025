@@ -29,7 +29,7 @@ public class Piano : MonoBehaviour
     {
         if (_isFixed)
             return;
-
+        GetComponent<AudioSource>().Play();
         GetComponent<Rigidbody>().useGravity = true;
     }
 }

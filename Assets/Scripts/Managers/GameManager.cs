@@ -17,8 +17,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI daveQuestText;
     [SerializeField] TextMeshProUGUI walterQuestText;
     [SerializeField] TextMeshProUGUI kidQuestText;
+    [SerializeField] CanvasGroup gameWinCanvasGroup;
+    [SerializeField] AudioClip loopStartSFX;
+    [SerializeField] AudioClip loopFailSFX;
+    [SerializeField] GameObject gameplayHud;
+    bool _gameOver = false;
     int _completedQuests = 0;
     bool _isInventoryOpen = false;
+    AudioSource _audioSource;
+
+    void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        _audioSource.PlayOneShot(loopStartSFX);
+    }
 
     public void OnInventoryOpen(InputAction.CallbackContext context)
     {
@@ -52,8 +68,9 @@ public class GameManager : MonoBehaviour
     [YarnCommand("Fail_Loop")]
     public void FailLoop(string reason)
     {
+        if (_gameOver) return;
         timeOfDayManager.Pause("GAME_OVER");
-
+        _gameOver = true;
         switch (reason)
         {
             case "Piano":
@@ -79,6 +96,10 @@ public class GameManager : MonoBehaviour
             case "No Wallet":
                 loopFailText.text = "You didn't get the wallet!";
                 break;
+
+            case "Day End":
+                loopFailText.text = "You didn't complete the tasks before the end of the day!";
+                break;
         }
 
         StartCoroutine(LoopFail());
@@ -89,7 +110,11 @@ public class GameManager : MonoBehaviour
         while (dialogueRunner.IsDialogueRunning)
             yield return null;
 
+        gameplayHud.SetActive(false);
+
         yield return new WaitForSeconds(1);
+
+        _audioSource.PlayOneShot(loopFailSFX);
 
         playerInputHandler.SwapActionMap("UI");
 
@@ -122,11 +147,34 @@ public class GameManager : MonoBehaviour
             kidQuestText.text = StrikeThroughText(kidQuestText.text);
 
         if (_completedQuests == 3)
-            Debug.Log("win da game");
+            StartCoroutine(FinishGame());
     }
 
     string StrikeThroughText(string text)
     {
         return "<s>" + text + "</s>";
+    }
+
+    IEnumerator FinishGame()
+    {
+        while (dialogueRunner.IsDialogueRunning)
+            yield return null;
+
+        gameplayHud.SetActive(false);
+
+        timeOfDayManager.Pause("WIN");
+
+        yield return new WaitForSeconds(2f);
+
+        playerInputHandler.SwapActionMap("UI");
+
+        gameWinCanvasGroup.DOFade(1, 1);
+
+        yield return new WaitForSeconds(1);
+
+        gameWinCanvasGroup.interactable = true;
+        gameWinCanvasGroup.blocksRaycasts = true;
+
+        playerInputHandler.SwapActionMap("UI");
     }
 }
