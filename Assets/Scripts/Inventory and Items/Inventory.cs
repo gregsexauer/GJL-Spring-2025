@@ -8,12 +8,23 @@ public class Inventory : MonoBehaviour
     static List<Item> _items = new();
     static List<InventoryItem> _inventoryItems = new();
 
+    private void Start()
+    {
+        foreach (Item item in _items)
+            RemoveItem(item.name);
+    }
+
     public void PickUpItem(Item item)
     {
         _items.Add(item);
         GameObject inventoryItem = Instantiate(inventoryItemPrefab, this.transform);
         inventoryItem.GetComponent<InventoryItem>().Initialize(item.gameObject);
         _inventoryItems.Add(inventoryItem.GetComponent<InventoryItem>());
+    }
+
+    public void Remove(string itemName)
+    {
+        RemoveItem(itemName);
     }
 
     [YarnCommand("Remove_Item")]
@@ -37,6 +48,11 @@ public class Inventory : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public bool DoesContainItem(string item)
+    {
+        return DoesInventoryContainItem(item);
     }
 
     [YarnFunction("Does_Inventory_Contain_Item")]
