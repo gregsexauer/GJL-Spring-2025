@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI daveQuestText;
     [SerializeField] TextMeshProUGUI walterQuestText;
     [SerializeField] TextMeshProUGUI kidQuestText;
+    [SerializeField] CanvasGroup gameWinCanvasGroup;
     int _completedQuests = 0;
     bool _isInventoryOpen = false;
 
@@ -122,11 +123,28 @@ public class GameManager : MonoBehaviour
             kidQuestText.text = StrikeThroughText(kidQuestText.text);
 
         if (_completedQuests == 3)
-            Debug.Log("win da game");
+            StartCoroutine(FinishGame());
     }
 
     string StrikeThroughText(string text)
     {
         return "<s>" + text + "</s>";
+    }
+
+    IEnumerator FinishGame()
+    {
+        while (dialogueRunner.IsDialogueRunning)
+            yield return null;
+
+        yield return new WaitForSeconds(1);
+
+        playerInputHandler.SwapActionMap("UI");
+
+        gameWinCanvasGroup.DOFade(1, 1);
+
+        yield return new WaitForSeconds(1);
+
+        gameWinCanvasGroup.interactable = true;
+        gameWinCanvasGroup.blocksRaycasts = true;
     }
 }

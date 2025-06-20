@@ -4,7 +4,7 @@
     <<jump Already_Fixed>>
 <<endif>>
 
-It looks like the rope is frayed... seems dangerous
+It looks like the Rope is frayed... seems dangerous
 <<if Does_Inventory_Contain_Item("Rope")>>
     <<jump Fix_Piano>>
 <<endif>>
@@ -12,13 +12,13 @@ It looks like the rope is frayed... seems dangerous
 
 title: Fix_Piano
 ---
-Should I replace the rope?
+Should I replace the Rope?
     -> Yes
         <<Replace_Rope Piano>>
         <<Remove_Item Rope>>
         It looks much safer now!
     -> No
-        It would be a shame if someone was walking under this when the rope snapped...
+        It would be a shame if someone was walking under this when the Rope snapped...
 ===
 
 title: Already_Fixed

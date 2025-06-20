@@ -41,8 +41,12 @@ The Saddest Kid In The World: I got a bad grade on my test...
 
 title: Offer_Library_Card
 ---
-Here's your very own Library Card!
-<<Remove_Item "Library Card">>
-<<Finish_Quest_Kid "The Saddest Kid In The World">>
-The Saddest Kid In the World: Wow! Thanks stranger!
+Should I give the kid the Library Card?
+ -> Yes
+    Here's your very own Library Card!
+    <<Remove_Item "Library Card">>
+    <<Finish_Quest_Kid "The Saddest Kid In The World">>
+    The Saddest Kid In the World: Wow! Thanks stranger!
+-> No
+    I guess he needs to learn to overcome his fears by himself?
 ===

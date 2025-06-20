@@ -4,7 +4,8 @@ using Yarn.Unity;
 
 public class SadKid : MonoBehaviour
 {
-    [SerializeField] GameObject umbrella;
+    [SerializeField] GameObject umbrellaSad;
+    [SerializeField] GameObject umbrellaHappy;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite holdingUmbrella;
     [SerializeField] Sprite happySprite;
@@ -15,7 +16,7 @@ public class SadKid : MonoBehaviour
     [YarnCommand("Give_Umbrella")]
     public void GiveUmbrella()
     {
-        umbrella.SetActive(true);
+        umbrellaSad.SetActive(true);
         spriteRenderer.sprite = holdingUmbrella;
     }
 
@@ -23,6 +24,8 @@ public class SadKid : MonoBehaviour
     public void FinishQuest()
     {
         spriteRenderer.sprite = happySprite;
+        umbrellaSad.SetActive(false);
+        umbrellaHappy.SetActive(true);
         GetComponent<DialogueInteractable>().IsActive = false;
         gameManager.CompleteQuest("Kid");
         rainParticles.Stop();
