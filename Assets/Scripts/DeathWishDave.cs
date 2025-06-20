@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class DeathWishDave : MonoBehaviour
 {
@@ -10,7 +9,13 @@ public class DeathWishDave : MonoBehaviour
     [SerializeField] float walkSpeed;
     [SerializeField] List<Transform> wayPoints;
     [SerializeField] GameManager gameManager;
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Animator animator;
+    [SerializeField] GameObject cigar;
+    [SerializeField] Sprite litCigar;
+    [SerializeField] Sprite smokingCigar;
+    [SerializeField] GameObject dynamite;
+    [SerializeField] Sprite litDynamite;
+    [SerializeField] Sprite explodedDynamite;
     int _waypointIndex;
     bool _isDead = false;
 
@@ -43,7 +48,6 @@ public class DeathWishDave : MonoBehaviour
         {
             StartCoroutine(Flatten());
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,35 +56,61 @@ public class DeathWishDave : MonoBehaviour
         {
             StartCoroutine(Electrocute());
         }
+        else if (other.gameObject.name == "Dynamite")
+        {
+            StartCoroutine(Smoke(other.GetComponent<Dynamite>().IsCigar));
+            other.gameObject.SetActive(false);
+        }
     }
 
     IEnumerator Flatten()
     {
-        _isDead = true;
-        transform.DOScaleY(.1f, .1f);
-        yield return new WaitForSeconds(.1f);
+        Die();
+        animator.SetTrigger("Idle");
+        transform.DOScaleY(.1f, .15f);
+        yield return new WaitForSeconds(.15f);
         gameManager.FailLoop("Piano");
     }
 
     IEnumerator Electrocute()
     {
-        _isDead = true;
-        for (int i = 0; i <= 3; i++)
-        {
-            yield return new WaitForSeconds(.05f);
-            spriteRenderer.color = Color.black;
-            yield return new WaitForSeconds(.05f);
-            spriteRenderer.color = Color.white;
-        }
+        Die();
+        animator.SetTrigger("Electrocute");
+
+        yield return new WaitForSeconds(.5f);
 
         gameManager.FailLoop("Electrocution");
+    }
 
-        for (int i = 0; i <= 99; i++)
+    IEnumerator Smoke(bool isCigar)
+    {
+        GetComponent<DialogueInteractable>().IsActive = false;
+        animator.SetTrigger("Smoke");
+        if (isCigar)
         {
-            yield return new WaitForSeconds(.05f);
-            spriteRenderer.color = Color.black;
-            yield return new WaitForSeconds(.05f);
-            spriteRenderer.color = Color.white;
+            cigar.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            cigar.GetComponent<SpriteRenderer>().sprite = litCigar;
+            yield return new WaitForSeconds(1f);
+            cigar.GetComponent<SpriteRenderer>().sprite = smokingCigar;
+            gameManager.CompleteQuest("Dave");
         }
+        else
+        {
+            dynamite.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            dynamite.GetComponent<SpriteRenderer>().sprite = litDynamite;
+            yield return new WaitForSeconds(1f);
+            dynamite.GetComponent<SpriteRenderer>().sprite = explodedDynamite;
+            animator.SetTrigger("Explode");
+            yield return new WaitForSeconds(.5f);
+            gameManager.FailLoop("Dynamite");
+        }
+    }
+
+    void Die()
+    {
+        _isDead = true;
+        GetComponent<DialogueInteractable>().IsActive = false;
     }
 }

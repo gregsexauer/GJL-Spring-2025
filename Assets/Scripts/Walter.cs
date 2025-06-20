@@ -11,6 +11,7 @@ public class Walter : MonoBehaviour
     public void FinishQuest()
     {
         spriteRenderer.sprite = happySprite;
+        GetComponent<DialogueInteractable>().IsActive = false;
         gameManager.CompleteQuest("Walter");
     }    
 }
