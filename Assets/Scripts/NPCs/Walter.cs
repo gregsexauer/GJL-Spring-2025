@@ -7,7 +7,7 @@ public class Walter : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite happySprite;
 
-    [YarnCommand("Finish_Quest")]
+    [YarnCommand("Finish_Quest_Walter")]
     public void FinishQuest()
     {
         spriteRenderer.sprite = happySprite;
