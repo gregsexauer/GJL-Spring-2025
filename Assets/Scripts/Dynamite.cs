@@ -3,6 +3,7 @@ using Yarn.Unity;
 
 public class Dynamite : MonoBehaviour
 {
+    public bool IsCigar = false;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite cigarSprite;
     
@@ -10,7 +11,7 @@ public class Dynamite : MonoBehaviour
     public void Swap()
     {
         spriteRenderer.sprite = cigarSprite;
-        GetComponent<DialogueInteractable>().enabled = false;
-        GetComponent<Collider>().enabled = false;
+        GetComponent<DialogueInteractable>().IsActive = false;
+        IsCigar = true;
     }
 }

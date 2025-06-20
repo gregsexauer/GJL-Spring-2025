@@ -3,9 +3,10 @@
 I'll be honest, I have no idea why this is laying out in the middle of a city.
 Maybe I should swap it out for something else...
 <<if Does_Inventory_Contain_Item("Cigar")>>
-    Maybe this cigar would be a good replacement?
+    Maybe this Cigar would be a good replacement?
         -> Yes
             <<Swap Dynamite>>
+            <<Remove_Item "Cigar">>
             Yeah, that's better... I think...
             Long-term health consequences be damned...
         -> No

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         if (!context.performed)
             return;
 
-        inventory.SetActive(true);
+        inventory.GetComponent<CanvasGroup>().alpha = 1;
         timeOfDayManager.Pause("INVENTORY");
         playerInputHandler.SwapActionMap("UI");
 
@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
             return;
 
         _isInventoryOpen = false;
-        inventory.SetActive(false);
+
+        inventory.GetComponent<CanvasGroup>().alpha = 0;
         timeOfDayManager.Unpause("INVENTORY");
         playerInputHandler.SwapActionMap("Player");
     }
