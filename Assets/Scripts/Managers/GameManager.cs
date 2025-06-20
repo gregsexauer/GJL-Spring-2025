@@ -18,8 +18,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI walterQuestText;
     [SerializeField] TextMeshProUGUI kidQuestText;
     [SerializeField] CanvasGroup gameWinCanvasGroup;
+    [SerializeField] AudioClip loopStartSFX;
+    [SerializeField] AudioClip loopFailSFX;
+    bool _gameOver = false;
     int _completedQuests = 0;
     bool _isInventoryOpen = false;
+    AudioSource _audioSource;
+
+    void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        _audioSource.PlayOneShot(loopStartSFX);
+    }
 
     public void OnInventoryOpen(InputAction.CallbackContext context)
     {
@@ -53,8 +67,9 @@ public class GameManager : MonoBehaviour
     [YarnCommand("Fail_Loop")]
     public void FailLoop(string reason)
     {
+        if (_gameOver) return;
         timeOfDayManager.Pause("GAME_OVER");
-
+        _gameOver = true;
         switch (reason)
         {
             case "Piano":
@@ -91,6 +106,8 @@ public class GameManager : MonoBehaviour
             yield return null;
 
         yield return new WaitForSeconds(1);
+
+        _audioSource.PlayOneShot(loopFailSFX);
 
         playerInputHandler.SwapActionMap("UI");
 

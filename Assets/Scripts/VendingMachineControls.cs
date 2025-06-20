@@ -53,6 +53,7 @@ public class VendingMachineControls : MonoBehaviour
         }
         else if (_currentInput == "B3")
         {
+            GetComponent<AudioSource>().Play();
             wallet.DOMove(walletEndPosition.position, .5f).SetEase(Ease.Linear).OnComplete(() => RevealWallet());
         }
         else

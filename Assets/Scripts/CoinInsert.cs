@@ -20,5 +20,6 @@ public class CoinInsert : MonoBehaviour, IInteractable
         inventory.Remove("Some Change");
         controls.OnInsertCoins();
         IsActive = false;
+        GetComponent<AudioSource>().Play();
     }
 }

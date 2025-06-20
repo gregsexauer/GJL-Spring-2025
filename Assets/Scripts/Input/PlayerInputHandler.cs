@@ -22,6 +22,8 @@ public class PlayerInputHandler : MonoBehaviour
             foreach (var map in playerInput.actions.actionMaps)
                 map.Disable();
             SwapActionMap("UI");
+            yield return null;
+            SwapActionMap("UI");
         }
     }
 
@@ -51,10 +53,10 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        Cursor.lockState = hasFocus ? CursorLockMode.Locked : CursorLockMode.None;
-    }
+    //private void OnApplicationFocus(bool hasFocus)
+    //{
+    //    Cursor.lockState = hasFocus ? CursorLockMode.Locked : CursorLockMode.None;
+    //}
 
     public void SwapActionMap(string newMap)
     {

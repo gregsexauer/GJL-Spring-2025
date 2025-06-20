@@ -16,8 +16,16 @@ public class DeathWishDave : MonoBehaviour
     [SerializeField] GameObject dynamite;
     [SerializeField] Sprite litDynamite;
     [SerializeField] Sprite explodedDynamite;
+    [SerializeField] AudioClip zap;
+    [SerializeField] AudioClip explode;
     int _waypointIndex;
     bool _isDead = false;
+    AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -75,11 +83,17 @@ public class DeathWishDave : MonoBehaviour
     IEnumerator Electrocute()
     {
         Die();
+        _audioSource.clip = zap;
+        _audioSource.Play();
         animator.SetTrigger("Electrocute");
 
         yield return new WaitForSeconds(.5f);
 
         gameManager.FailLoop("Electrocution");
+
+        yield return new WaitForSeconds(.5071f);
+
+        _audioSource.Play();
     }
 
     IEnumerator Smoke(bool isCigar)
@@ -91,7 +105,7 @@ public class DeathWishDave : MonoBehaviour
             cigar.SetActive(true);
             yield return new WaitForSeconds(1f);
             cigar.GetComponent<SpriteRenderer>().sprite = litCigar;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             cigar.GetComponent<SpriteRenderer>().sprite = smokingCigar;
             gameManager.CompleteQuest("Dave");
         }
@@ -100,7 +114,8 @@ public class DeathWishDave : MonoBehaviour
             dynamite.SetActive(true);
             yield return new WaitForSeconds(1f);
             dynamite.GetComponent<SpriteRenderer>().sprite = litDynamite;
-            yield return new WaitForSeconds(1f);
+            _audioSource.PlayOneShot(explode);
+            yield return new WaitForSeconds(2f);
             dynamite.GetComponent<SpriteRenderer>().sprite = explodedDynamite;
             animator.SetTrigger("Explode");
             yield return new WaitForSeconds(.5f);
