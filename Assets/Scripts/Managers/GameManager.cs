@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
 
         timeOfDayManager.Pause("WIN");
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2f);
 
         playerInputHandler.SwapActionMap("UI");
 
@@ -174,5 +174,7 @@ public class GameManager : MonoBehaviour
 
         gameWinCanvasGroup.interactable = true;
         gameWinCanvasGroup.blocksRaycasts = true;
+
+        playerInputHandler.SwapActionMap("UI");
     }
 }
