@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI loopFailText;
     [SerializeField] CanvasGroup failCanvasGroup;
     [SerializeField] DialogueRunner dialogueRunner;
+    [SerializeField] TextMeshProUGUI daveQuestText;
+    [SerializeField] TextMeshProUGUI walterQuestText;
+    [SerializeField] TextMeshProUGUI kidQuestText;
+    int _completedQuests = 0;
     bool _isInventoryOpen = false;
 
     public void OnInventoryOpen(InputAction.CallbackContext context)
@@ -104,5 +108,24 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void CompleteQuest(string name)
+    {
+        _completedQuests++;
+        if (name == "Walter")
+            walterQuestText.text = StrikeThroughText(walterQuestText.text);
+        else if (name == "Dave")
+            daveQuestText.text = StrikeThroughText(daveQuestText.text);
+        else if (name == "Kid")
+            kidQuestText.text = StrikeThroughText(kidQuestText.text);
+
+        if (_completedQuests == 3)
+            Debug.Log("win da game");
+    }
+
+    string StrikeThroughText(string text)
+    {
+        return "<s>" + text + "</s>";
     }
 }

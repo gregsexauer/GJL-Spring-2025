@@ -3,4 +3,19 @@
 Walter: Welp... it done happ'ned agin...
 Walter: Gone 'n' got muh Wallet stuck in th' vendin' machine...
 Walter: If only I had muh Wallet... Then I reckon I could be usin' Some Change t' buy it back, like a Fizzy Drink...
+<<if Does_Inventory_Contain_Item("Wallet")>>
+    Give Walter his Wallet?
+        -> Yes
+            <<jump Give_Wallet>>
+        -> No
+            Maybe I should just keep the Wallet for myself...
+<<endif>>
+===
+
+title: Give_Wallet
+---
+<<Remove_Item "Wallet">>
+<<Finish_Quest Walter>>
+Walter: Muh Wallet! I ne'er thought I'd see it agin!
+Walter: Thank ya, kind stranger!
 ===

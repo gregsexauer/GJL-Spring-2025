@@ -8,7 +8,7 @@ Geez, it's really raining down on this kid...
 
 title: Offer_Umbrella
 ---
-Should I offer my umbrella?
+Should I offer my Umbrella?
     -> Yes
         <<Give_Umbrella "The Saddest Kid In The World">>
         <<Remove_Item Umbrella>>
