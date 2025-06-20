@@ -18,6 +18,8 @@ public class DeathWishDave : MonoBehaviour
     [SerializeField] Sprite explodedDynamite;
     [SerializeField] AudioClip zap;
     [SerializeField] AudioClip explode;
+    [SerializeField] ParticleSystem smokingParticles;
+    [SerializeField] ParticleSystem explosionParticles; 
     int _waypointIndex;
     bool _isDead = false;
     AudioSource _audioSource;
@@ -107,6 +109,7 @@ public class DeathWishDave : MonoBehaviour
             cigar.GetComponent<SpriteRenderer>().sprite = litCigar;
             yield return new WaitForSeconds(2f);
             cigar.GetComponent<SpriteRenderer>().sprite = smokingCigar;
+            smokingParticles.Play();
             gameManager.CompleteQuest("Dave");
         }
         else
@@ -118,6 +121,7 @@ public class DeathWishDave : MonoBehaviour
             yield return new WaitForSeconds(2f);
             dynamite.GetComponent<SpriteRenderer>().sprite = explodedDynamite;
             animator.SetTrigger("Explode");
+            explosionParticles.Play();
             yield return new WaitForSeconds(.5f);
             gameManager.FailLoop("Dynamite");
         }
