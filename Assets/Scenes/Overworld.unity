@@ -18350,6 +18350,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 456169855}
   flippedSprite: {fileID: 21300000, guid: 0449a65e06f95a44d9e1113d5b093ff4, type: 3}
   wires: {fileID: 111172179}
+  vendingMachineControls: {fileID: 1510124070}
 --- !u!1 &729888114
 GameObject:
   m_ObjectHideFlags: 0
@@ -29424,6 +29425,7 @@ MonoBehaviour:
   wallet: {fileID: 1022519479}
   walletEndPosition: {fileID: 70422795}
   walletItem: {fileID: 1068485825}
+  glass: {fileID: 1851095355}
 --- !u!82 &1510124071
 AudioSource:
   m_ObjectHideFlags: 0

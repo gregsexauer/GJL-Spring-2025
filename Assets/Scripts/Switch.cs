@@ -8,11 +8,13 @@ public class Switch : MonoBehaviour, IInteractable
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite flippedSprite;
     [SerializeField] DangerousWires wires;
+    [SerializeField] VendingMachineControls vendingMachineControls;
 
     public void Interact()
     {
         spriteRenderer.sprite = flippedSprite;
         IsActive = false;
         wires.TurnOffElectricity();
+        vendingMachineControls.PowerOff();
     }
 }

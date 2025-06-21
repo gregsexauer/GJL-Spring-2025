@@ -99,6 +99,10 @@ public class GameManager : MonoBehaviour
                 loopFailText.text = "You didn't get the wallet!";
                 break;
 
+            case "Power Off No Wallet":
+                loopFailText.text = "You turned off the power before getting Walter's Wallet from the vending machine!";
+                    break;
+
             case "Day End":
                 loopFailText.text = "You didn't complete the tasks before the end of the day!";
                 break;
