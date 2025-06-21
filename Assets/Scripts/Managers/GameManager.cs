@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] CanvasGroup gameWinCanvasGroup;
     [SerializeField] AudioClip loopStartSFX;
     [SerializeField] AudioClip loopFailSFX;
+    [SerializeField] AudioClip loolWinSFX;
     [SerializeField] GameObject gameplayHud;
+    [SerializeField] MusicPlayer musicPlayer;
     bool _gameOver = false;
     int _completedQuests = 0;
     bool _isInventoryOpen = false;
@@ -114,6 +116,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
+        musicPlayer.StopMainTheme();
         _audioSource.PlayOneShot(loopFailSFX);
 
         playerInputHandler.SwapActionMap("UI");
@@ -167,6 +170,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         playerInputHandler.SwapActionMap("UI");
+
+        musicPlayer.StopMainTheme();
+        _audioSource.PlayOneShot(loolWinSFX);
 
         gameWinCanvasGroup.DOFade(1, 1);
 

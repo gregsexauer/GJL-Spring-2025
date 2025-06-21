@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class TriggerEvents : MonoBehaviour
 {
     [SerializeField] UnityEvent triggerEvent;
+    [SerializeField] UnityEvent triggerExitEvent;
     [SerializeField] string triggerTag;
 
     private void OnTriggerEnter(Collider other)
@@ -12,5 +13,11 @@ public class TriggerEvents : MonoBehaviour
         {
             triggerEvent.Invoke();
         }
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        if (other.gameObject.CompareTag(triggerTag))
+            triggerExitEvent.Invoke();
     }
 }

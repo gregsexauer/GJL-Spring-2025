@@ -10,5 +10,6 @@ public class VendingMachineButton : MonoBehaviour, IInteractable
     public void Interact()
     {
         controls.Input(input);
+        GetComponent<AudioSource>().Play();
     }
 }

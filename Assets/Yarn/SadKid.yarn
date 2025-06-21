@@ -1,5 +1,6 @@
 title: Saddest_Kid_Intro
 ---
+<<Start_Kid_Theme "Music Player">>
 <<if Does_Inventory_Contain_Item("Library Card")>>
     <<jump Offer_Library_Card>>
 <<endif>>
