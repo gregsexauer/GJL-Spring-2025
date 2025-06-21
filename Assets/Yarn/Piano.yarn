@@ -4,7 +4,7 @@
     <<jump Already_Fixed>>
 <<endif>>
 
-It looks like the Rope is frayed... seems dangerous
+It looks like the Rope is frayed... seems dangerous.
 <<if Does_Inventory_Contain_Item("Rope")>>
     <<jump Fix_Piano>>
 <<endif>>
