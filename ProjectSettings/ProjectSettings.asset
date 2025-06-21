@@ -14,8 +14,8 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Concrete Games Studio
   productName: Re-Runs
-  defaultCursor: {fileID: 2800000, guid: 9906d5394e97d5f438b0703809a3840a, type: 3}
-  cursorHotspot: {x: 0.5, y: 0}
+  defaultCursor: {fileID: 2800000, guid: 323a22be47cea2a45ab4552a4f4fb12f, type: 3}
+  cursorHotspot: {x: 0.5, y: 0.25}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 0
   m_ShowUnitySplashLogo: 0
