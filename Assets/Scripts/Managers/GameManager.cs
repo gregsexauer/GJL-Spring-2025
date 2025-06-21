@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip loolWinSFX;
     [SerializeField] GameObject gameplayHud;
     [SerializeField] MusicPlayer musicPlayer;
+    [SerializeField] NewsScroller newsScroller;
     bool _gameOver = false;
     int _completedQuests = 0;
     bool _isInventoryOpen = false;
@@ -146,6 +147,7 @@ public class GameManager : MonoBehaviour
     public void CompleteQuest(string name)
     {
         _completedQuests++;
+        newsScroller.ShowNews(name);
         if (name == "Walter")
             walterQuestText.text = StrikeThroughText(walterQuestText.text);
         else if (name == "Dave")
@@ -167,12 +169,11 @@ public class GameManager : MonoBehaviour
         while (dialogueRunner.IsDialogueRunning)
             yield return null;
 
-        gameplayHud.SetActive(false);
-
         timeOfDayManager.Pause("WIN");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(7f);
 
+        gameplayHud.SetActive(false);
         playerInputHandler.SwapActionMap("UI");
 
         musicPlayer.StopMainTheme();
