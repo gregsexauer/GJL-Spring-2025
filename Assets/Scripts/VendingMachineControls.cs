@@ -13,6 +13,7 @@ public class VendingMachineControls : MonoBehaviour
     [SerializeField] Transform walletEndPosition;
     [SerializeField] Item walletItem;
     [SerializeField] SpriteRenderer glass;
+    [SerializeField] Sprite darkSprite;
 
     bool _hasWalletDropped;
     string _currentInput = "";
@@ -93,6 +94,6 @@ public class VendingMachineControls : MonoBehaviour
     {
         if (!_hasWalletDropped)
             gameManager.FailLoop("Power Off No Wallet");
-        // update glass sprite
+        glass.sprite = darkSprite;
     }
 }

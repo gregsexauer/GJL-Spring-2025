@@ -29891,6 +29891,7 @@ MonoBehaviour:
   walletEndPosition: {fileID: 70422795}
   walletItem: {fileID: 1068485825}
   glass: {fileID: 1851095355}
+  darkSprite: {fileID: 21300000, guid: 3a638ad88f62ddf4fa323fd65eedd251, type: 3}
 --- !u!82 &1510124071
 AudioSource:
   m_ObjectHideFlags: 0
