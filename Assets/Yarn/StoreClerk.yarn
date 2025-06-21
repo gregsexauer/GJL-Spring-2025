@@ -1,10 +1,10 @@
 ﻿title: StoreClerk
 ---
-Store Clerk: Hello and welcome to Store would you like to purchase our Product?
+Store Clerk: Hello and welcome to Gum Store would you like to purchase our Product?
     -> Yes, I would like to purchase the Product
         <<jump Purchase_Product>>
     -> No, thank you
-        Store Clerk: That's OK, they pay me the same either way
+        Store Clerk: That's OK, they pay me the same either way.
 ===
 
 title: Purchase_Product
@@ -13,7 +13,7 @@ title: Purchase_Product
     Store Clerk: OK, that'll be Twenty Bucks minus Some Change.
         -> Here you are, fine Store Clerk
             <<Remove_Item "Twenty Bucks">>
-            Store Clerk: Cool, thanks for shopping at Store. Your Product and Some Change are on the counter for you.
+            Store Clerk: Cool, thanks for shopping at Gum Store. Your Product and Some Change are on the counter for you.
             <<Reveal "Product">>
             <<Reveal "Some Change">>
         -> Actually, on second thought, I don't want the Product
