@@ -10257,7 +10257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86606d67b5ba74489539e60e3060d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5.5
+  rotationSpeed: 7
   cameraTarget: {fileID: 1079559758}
   topClamp: 90
   bottomClamp: -90
