@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject controls;
     [SerializeField] GameObject credits;
     [SerializeField] Transform TVImage;
+    [SerializeField] Transform title;
     [SerializeField] Knob knob;
     GameObject _activeSubMenu;
     AudioSource _audioSource;
@@ -16,6 +18,18 @@ public class MainMenuManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         _audioSource = GetComponent<AudioSource>();
+    }
+
+    private IEnumerator Start()
+    {
+        title.DOScale(2.5f, .25f).SetEase(Ease.OutBounce);
+        yield return new WaitForSeconds(.25f);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(title.DORotate(new Vector3(0, 0, -20), 1).SetEase(Ease.Linear))
+            .Append(title.DORotate(new Vector3(0, 0, 0), 1).SetEase(Ease.Linear))
+            .Append(title.DORotate(new Vector3(0, 0, 20), 1).SetEase(Ease.Linear))
+            .Append(title.DORotate(new Vector3(0, 0, 0), 1).SetEase(Ease.Linear));
+        sequence.SetLoops(-1);
     }
 
     public void OnPlay()
