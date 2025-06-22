@@ -2,5 +2,5 @@ using UnityEngine;
 
 public static class RunsCounter
 {
-    public static int runs = 1;
+    public static int runs = 0;
 }
