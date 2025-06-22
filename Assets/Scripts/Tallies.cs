@@ -9,9 +9,7 @@ public class Tallies : MonoBehaviour
     {
         RunsCounter.runs++;
         int numFullTallies = RunsCounter.runs / 5;
-        Debug.Log(numFullTallies);
         int incompleteTally = RunsCounter.runs % 5;
-        Debug.Log(incompleteTally);
 
         foreach(TallySet set in tallySets)
         {

@@ -65118,6 +65118,7 @@ GameObject:
   - component: {fileID: 1444877872}
   - component: {fileID: 1444877874}
   - component: {fileID: 1444877873}
+  - component: {fileID: 1444877875}
   m_Layer: 0
   m_Name: Store Clerk
   m_TagString: Untagged
@@ -65177,6 +65178,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0024643, y: 2.6707344, z: 1.8672929}
   m_Center: {x: 0.0012321472, y: 0.8353672, z: -0.044555902}
+--- !u!114 &1444877875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444877871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22860e02e69a8a946b615aaf3d8ff097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1446321361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8372125161548427329, guid: 339e3e3a67aed3142afb6114304614df, type: 3}
