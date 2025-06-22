@@ -1,5 +1,6 @@
 title: Saddest_Kid_Intro
 ---
+<<Start_Kid_Theme "Music Player">>
 <<if Does_Inventory_Contain_Item("Library Card")>>
     <<jump Offer_Library_Card>>
 <<endif>>
@@ -46,7 +47,7 @@ Should I give the kid the Library Card?
     Here's your very own Library Card!
     <<Remove_Item "Library Card">>
     <<Finish_Quest_Kid "The Saddest Kid In The World">>
-    The Saddest Kid In the World: Wow! Thanks stranger!
+    Alonzo: Wow! Thanks stranger!
 -> No
     I guess he needs to learn to overcome his fears by himself?
 ===

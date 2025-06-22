@@ -37,8 +37,8 @@ public class SadKid : MonoBehaviour
         umbrellaHappy.SetActive(true);
         GetComponent<DialogueInteractable>().IsActive = false;
         gameManager.CompleteQuest("Kid");
-        rainParticles.Stop();
-        cloud.DOBlendableColor(new Color(255, 255, 255, 0), 1f);
-        _audioSource.DOFade(0, 1);
+        //rainParticles.Stop();
+        //cloud.DOBlendableColor(new Color(255, 255, 255, 0), 1f);
+        //_audioSource.DOFade(0, 1);
     }
 }

@@ -12,6 +12,10 @@ public class VendingMachineControls : MonoBehaviour
     [SerializeField] Transform wallet;
     [SerializeField] Transform walletEndPosition;
     [SerializeField] Item walletItem;
+    [SerializeField] SpriteRenderer glass;
+    [SerializeField] Sprite darkSprite;
+
+    bool _hasWalletDropped;
     string _currentInput = "";
 
     public void OnInsertCoins()
@@ -53,6 +57,7 @@ public class VendingMachineControls : MonoBehaviour
         }
         else if (_currentInput == "B3")
         {
+            _hasWalletDropped = true;
             GetComponent<AudioSource>().Play();
             wallet.DOMove(walletEndPosition.position, .5f).SetEase(Ease.Linear).OnComplete(() => RevealWallet());
             StartCoroutine(ResetText());
@@ -83,5 +88,12 @@ public class VendingMachineControls : MonoBehaviour
         text.text = "";
         foreach (VendingMachineButton button in buttons)
             button.GetComponent<Collider>().enabled = true;
+    }
+
+    public void PowerOff()
+    {
+        if (!_hasWalletDropped)
+            gameManager.FailLoop("Power Off No Wallet");
+        glass.sprite = darkSprite;
     }
 }

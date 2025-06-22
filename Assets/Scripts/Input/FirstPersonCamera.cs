@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class FirstPersonCamera : MonoBehaviour
 {
+    [SerializeField] TimeOfDayManager timeOfDayManager;
     [Tooltip("Rotation speed of the character")]
     [SerializeField] float rotationSpeed = 1.0f;
     [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -29,6 +30,7 @@ public class FirstPersonCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (timeOfDayManager.IsPaused) return;
         // if there is an input
         if (_inputHandler.LookInput.sqrMagnitude >= _minLookThreshold)
         {

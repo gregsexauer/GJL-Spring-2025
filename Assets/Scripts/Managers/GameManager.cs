@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] CanvasGroup gameWinCanvasGroup;
     [SerializeField] AudioClip loopStartSFX;
     [SerializeField] AudioClip loopFailSFX;
+    [SerializeField] AudioClip loolWinSFX;
     [SerializeField] GameObject gameplayHud;
+    [SerializeField] MusicPlayer musicPlayer;
+    [SerializeField] NewsScroller newsScroller;
     bool _gameOver = false;
     int _completedQuests = 0;
     bool _isInventoryOpen = false;
@@ -97,6 +100,10 @@ public class GameManager : MonoBehaviour
                 loopFailText.text = "You didn't get the wallet!";
                 break;
 
+            case "Power Off No Wallet":
+                loopFailText.text = "You turned off the power before getting Walter's Wallet from the vending machine!";
+                    break;
+
             case "Day End":
                 loopFailText.text = "You didn't complete the tasks before the end of the day!";
                 break;
@@ -114,6 +121,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
+        musicPlayer.StopMainTheme();
         _audioSource.PlayOneShot(loopFailSFX);
 
         playerInputHandler.SwapActionMap("UI");
@@ -139,6 +147,7 @@ public class GameManager : MonoBehaviour
     public void CompleteQuest(string name)
     {
         _completedQuests++;
+        newsScroller.ShowNews(name);
         if (name == "Walter")
             walterQuestText.text = StrikeThroughText(walterQuestText.text);
         else if (name == "Dave")
@@ -160,13 +169,15 @@ public class GameManager : MonoBehaviour
         while (dialogueRunner.IsDialogueRunning)
             yield return null;
 
-        gameplayHud.SetActive(false);
-
         timeOfDayManager.Pause("WIN");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(7f);
 
+        gameplayHud.SetActive(false);
         playerInputHandler.SwapActionMap("UI");
+
+        musicPlayer.StopMainTheme();
+        _audioSource.PlayOneShot(loolWinSFX);
 
         gameWinCanvasGroup.DOFade(1, 1);
 

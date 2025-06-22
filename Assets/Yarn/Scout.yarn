@@ -1,0 +1,7 @@
+﻿title: Scout
+---
+Pet Scout?
+    -> Yes
+        <<Pet_Scout Scout>>
+    -> No
+===

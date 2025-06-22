@@ -19,7 +19,8 @@ public class DeathWishDave : MonoBehaviour
     [SerializeField] AudioClip zap;
     [SerializeField] AudioClip explode;
     [SerializeField] ParticleSystem smokingParticles;
-    [SerializeField] ParticleSystem explosionParticles; 
+    [SerializeField] ParticleSystem explosionParticles;
+    [SerializeField] AudioSource whistle;
     int _waypointIndex;
     bool _isDead = false;
     AudioSource _audioSource;
@@ -117,6 +118,7 @@ public class DeathWishDave : MonoBehaviour
             dynamite.SetActive(true);
             yield return new WaitForSeconds(1f);
             dynamite.GetComponent<SpriteRenderer>().sprite = litDynamite;
+            Die();
             _audioSource.PlayOneShot(explode);
             yield return new WaitForSeconds(2f);
             dynamite.GetComponent<SpriteRenderer>().sprite = explodedDynamite;
@@ -129,6 +131,7 @@ public class DeathWishDave : MonoBehaviour
 
     void Die()
     {
+        whistle.Stop();
         _isDead = true;
         GetComponent<DialogueInteractable>().IsActive = false;
     }
