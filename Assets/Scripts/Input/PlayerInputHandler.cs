@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField] TimeOfDayManager timeOfDayManager;
     [SerializeField] PlayerInput playerInput;
 
     [Header("Player Input Values")]

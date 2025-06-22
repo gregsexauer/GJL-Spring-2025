@@ -11,6 +11,7 @@ public class Item : MonoBehaviour, IInteractable
     {
         IsActive = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
+        GetComponent<AudioSource>().Play();
         inventory.PickUpItem(this);
     }
 

@@ -16,6 +16,7 @@ public class Scout : MonoBehaviour
     IEnumerator Pet()
     {
         GetComponent<DialogueInteractable>().IsActive = false;
+        GetComponent<AudioSource>().Play();
         heart.DOScale(3, .15f).SetEase(Ease.OutBounce);
         yield return new WaitForSeconds(1);
         heart.DOScale(0, .25f).SetEase(Ease.OutFlash);
